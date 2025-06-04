@@ -1,0 +1,157 @@
+:root {
+
+    /*Primary Color*/
+    --Bright-Blue: hsl(220, 98%, 61%);
+    --Check-Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+
+    /*Light Theme*/
+
+    --Very-Light-Gray: hsl(0, 0%, 98%);
+    --Very-Light-Grayish-Blue: hsl(236, 33%, 92%);
+    --Light-Grayish-Blue: hsl(233, 11%, 84%);
+    --Dark-Grayish-Blue: hsl(236, 9%, 61%);
+    --Very-Dark-Grayish-Blue: hsl(235, 19%, 35%);
+
+    /*Dark Theme*/
+
+    --Very-Dark-Blue: hsl(235, 21%, 11%);
+    --Very-Dark-Desaturated-Blue: hsl(235, 24%, 19%);
+    --Light-Grayish-Blue: hsl(234, 39%, 85%);
+    --Light-Grayish-Blue-hover: hsl(236, 33%, 92%);
+    --Dark-Grayish-Blue: hsl(234, 11%, 52%);
+    --Very-Dark-Grayish-Blue-1: hsl(233, 14%, 35%);
+    --Very-Dark-Grayish-Blue-2: hsl(237, 14%, 26%);
+
+    /*Font Family*/
+    --Font-Family: 'Josefin Sans', sans-serif;
+    --font-weigth : 400;
+    --font-weigth-bold : 700;
+
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--Font-Family);
+    background-color: var(--Very-Dark-Blue);
+    color: var(--Light-Grayish-Blue);
+}
+
+.todoApp {
+  max-width: 1440px;
+  position: relative;
+}
+
+.background {
+    width: 100%;
+    height: 300px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: -1;
+}
+
+.background > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: -1;
+}
+
+.todoBox {
+    width: 440px;
+    height: 620px;
+    padding: 0;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-family: var(--Font-Family);
+    font-size: 2.5rem;
+    font-weight: var(--font-weigth-bold);
+    letter-spacing: 10px;
+    color: var(--Very-Light-Grayish-Blue);
+}
+
+.toggleButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  align-items:center;
+  justify-content:flex-start;
+  background-color: var(--Very-Dark-Desaturated-Blue);
+  border-radius: 5px;
+  margin: 1rem 0;
+  width: 100%;
+  height: 50px;
+}
+
+.checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--Dark-Grayish-Blue);
+  background-color: transparent;
+  position: relative;
+}
+
+.checkbox > img {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.taskInfo {
+  margin: 1rem 0;
+}
+
+.taskCount {
+  font-weight: bold;
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.clearCompleted {
+  margin-bottom: 1rem;
+  background: transparent;
+  border: none;
+  color: blue;
+  cursor: pointer;
+}
+
+.footer {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
