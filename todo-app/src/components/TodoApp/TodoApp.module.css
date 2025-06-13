@@ -33,8 +33,17 @@ body {
     margin: 0;
     padding: 0;
     font-family: var(--Font-Family);
-    background-color: var(--Very-Dark-Blue);
     color: var(--Light-Grayish-Blue);
+}
+
+body.dark-mode {
+    background-color: var(--Very-Dark-Desaturated-Blue);
+    color: var(--Light-Grayish-Blue);
+}
+
+body.light-mode {
+    background-color: var(--Very-Light-Gray);
+    color: var(--Very-Dark-Grayish-Blue);
 }
 
 .todoApp {
