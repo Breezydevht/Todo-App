@@ -111,22 +111,25 @@ h1 {
   height: 50px;
 }
 
-.checkbox {
+.checkbox .checkButton {
+  cursor: pointer;
   width: 24px;
   height: 24px;
   border-radius: 50%;
   border: 1px solid var(--Dark-Grayish-Blue);
   background-color: transparent;
   position: relative;
+  margin: 12px 7px;
 }
 
-.checkbox > img {
+.checkbox .checkButton > img {
   width: 10px;
   height: 10px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: none;
 }
 
 .taskInfo {

@@ -20,11 +20,17 @@ function TodoApp() {
     };
 
     const [ input, setInput ] = React.useState("");
+    // Estado para almacenar el valor del input
+    // Utiliza useState para crear una variable de estado llamada input y una función para actualizar su valor
+    // setInput es la función que se utiliza para actualizar el valor del input
 
     const [ todos, setTodos ] = React.useState([]);
     // Estado para almacenar los todos
 
-    console.log(input);
+    const [ filter, setFilter ] = React.useState('all');
+    // Estado para almacenar el filtro de los todos
+    // Utiliza useState para crear una variable de estado llamada filter y una función para actualizar su valor
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -35,10 +41,14 @@ function TodoApp() {
         setTodos([...todos, { id : Date.now(), text: input, completed: false }]);
         // Agrega el nuevo todo al estado de todos
         setInput("");
-        // Limpia el input después de agregar el todo
+        // Limpia el input después de agregar el todo    
     }
 
-    console.log(todos);
+    const filteredTodos = todos.filter((todo) => {
+        if (filter === 'active') return !todo.completed;
+        if (filter === 'completed') return todo.completed;
+        return todo; // Si el filtro es 'all', devuelve todos los todos
+      });
 
   return (
     <main className={styles.TodoApp}>
@@ -64,31 +74,34 @@ function TodoApp() {
         {/* onSubmit es un evento que se dispara cuando se envía el formulario */}
         {/* handleSubmit es una función que se ejecuta cuando se envía el formulario */}
         <div className={styles.checkbox}>
-            <img src="../../../src/assets/images/icon-check.svg" alt="check icon" />
+            <button type="submit" className={styles.checkButton}>
+                <img src="../../../src/assets/images/icon-check.svg" alt="check icon" />
+                {/* Icono de check que se muestra en el botón */}
+            </button>
         </div>
         <input type="text" placeholder="Create a new todo..." value={input} onChange={(e) => setInput(e.target.value)}/>
         {/* value es un atributo que se utiliza para establecer el valor del input */}
         {/* onChange es un evento que se dispara cuando el valor del input cambia y lo utilizo para actualizar el estado de la variable input */}
       </form>
 
-      <TodoList todos={todos} setTodos={setTodos}/>
+      <TodoList todos={filteredTodos} setTodos={setTodos}/>
       {/* Componente TodoList que recibe los todos y la función setTodos como props */}
       {/* Muestra la lista de todos utilizando el componente TodoList */}
       {/* todos es una prop que se pasa al componente TodoList */}
 
       <section className={styles.taskInfo}>
         <p>
-          <span className={styles.taskCount}>0</span> items left
+          <span className={styles.taskCount}>{todos.filter((todo) => !todo.completed).length}</span> items left
         </p>
       </section>
 
       <nav className={styles.filters}>
-        <button>All</button>
-        <button>Active</button>
-        <button>Completed</button>
+        <button onClick={() => setFilter('all')}>All</button>
+        <button onClick={() => setFilter('active')}>Active</button>
+        <button onClick={() => setFilter('completed')}>Completed</button>
       </nav>
 
-      <button className={styles.clearCompleted}>Clear Completed</button>
+      <button className={styles.clearCompleted} onClick={() => setTodos(todos.filter((todo) => !todo.completed))}>Clear Completed</button>
         </div>
 
         
