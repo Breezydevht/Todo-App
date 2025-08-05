@@ -5,19 +5,21 @@ import TodoList from "../todoList/todoList";
 
 function TodoApp() {
 
-    const [darkMode, setDarkMode] = React.useState(false);
-    const toggleDarkMode = () => {
-        const body = document.body;
-        if (darkMode) {
-            body.classList.remove(styles.darkMode);
-            body.classList.add(styles.lightMode);
-        } else {
-            body.classList.remove(styles.lightMode);
-            body.classList.add(styles.darkMode);
-        }
-        setDarkMode(!darkMode);
-        // Alterna entre los modos oscuro y claro
-    };
+    const [darkMode, setDarkMode] = React.useState(true);
+
+  React.useEffect(() => {
+    const body = document.body;
+    // Obtiene el elemento body del documento
+    // Utiliza useEffect para ejecutar un efecto secundario cuando el componente se monta o actual
+    darkMode ? body.classList.add("dark-mode") : body.classList.remove("dark-mode");
+    // Agrega o elimina la clase "dark-mode" al body según el estado de dark
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode((prev) => !prev);
+  };
+  // Función para alternar el modo oscuro
+  // Utiliza setDarkMode para actualizar el estado de darkMode al valor opuesto del actual
 
     const [ input, setInput ] = React.useState("");
     // Estado para almacenar el valor del input
@@ -54,7 +56,6 @@ function TodoApp() {
     <main className={styles.TodoApp}>
 
         <div className={styles.background}>
-            <img src="../../../src/assets/images/bg-desktop-dark.jpg" alt="background" />
         </div>
 
         <div className={styles.todoBox}>
@@ -64,7 +65,7 @@ function TodoApp() {
 
                 <div className={styles.themeToggle}>
                     <button className={styles.toggleButton} onClick={toggleDarkMode}>
-                            <img src="../../../src/assets/images/icon-sun.svg" alt="sun icon" />
+                            <img src={ darkMode ? "../../../src/assets/images/icon-sun.svg" : "../../../src/assets/images/icon-moon.svg" } />
                     </button>
                 </div>
              </header>
@@ -85,29 +86,29 @@ function TodoApp() {
       </form>
 
       <TodoList todos={filteredTodos} setTodos={setTodos}/>
+      {/* usamos la tecnica de composición para crear un componente TodoList */}
       {/* Componente TodoList que recibe los todos y la función setTodos como props */}
       {/* Muestra la lista de todos utilizando el componente TodoList */}
       {/* todos es una prop que se pasa al componente TodoList */}
 
       <section className={styles.taskInfo}>
-        <p>
-          <span className={styles.taskCount}>{todos.filter((todo) => !todo.completed).length}</span> items left
-        </p>
-      </section>
+        
+        <span className={styles.taskCount}>{todos.filter((todo) => !todo.completed).length} items left</span>
+      
 
       <nav className={styles.filters}>
-        <button onClick={() => setFilter('all')}>All</button>
-        <button onClick={() => setFilter('active')}>Active</button>
-        <button onClick={() => setFilter('completed')}>Completed</button>
+        <button className={filter === 'all' ? styles.active : ''} onClick={() => setFilter('all')}>All</button>
+        <button className={filter === 'active' ? styles.active : ''} onClick={() => setFilter('active')}>Active</button>
+        <button className={filter === 'completed' ? styles.active : ''}onClick={() => setFilter('completed')}>Completed</button>
       </nav>
 
       <button className={styles.clearCompleted} onClick={() => setTodos(todos.filter((todo) => !todo.completed))}>Clear Completed</button>
-        </div>
-
-        
+      </section>
 
       <footer className={styles.footer}>Drag and drop to reorder list</footer>
 
+        </div>
+      
       <div className={styles.attribution}>
         Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
         Coded by <a href="#">Marc Kalister Sanon</a>.

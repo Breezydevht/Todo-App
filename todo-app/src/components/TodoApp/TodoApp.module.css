@@ -2,7 +2,7 @@
 
     /*Primary Color*/
     --Bright-Blue: hsl(220, 98%, 61%);
-    --Check-Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+    --Check-Background: linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 
     /*Light Theme*/
 
@@ -29,22 +29,29 @@
 
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: var(--Font-Family);
-    color: var(--Light-Grayish-Blue);
+.TodoApp {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-body.dark-mode {
-    background-color: var(--Very-Dark-Desaturated-Blue);
-    color: var(--Light-Grayish-Blue);
+/* Modo oscuro aplicado globalmente al body */
+:global(body.dark-mode) {
+  background-color: #181824;
+  color: #f5f5f5;
 }
 
-body.light-mode {
-    background-color: var(--Very-Light-Gray);
-    color: var(--Very-Dark-Grayish-Blue);
+:global(body.dark-mode) input,
+:global(body.dark-mode) button.toggleButton {
+  background-color: transparent;
 }
+
+:global(body.dark-mode) div.background {
+  background-image: url("../../../src/assets/images/bg-desktop-dark.jpg");
+}
+
+:global(body:not(.dark-mode)) div.background {
+  background-image: url("../../../src/assets/images/bg-desktop-light.jpg");
+}
+
 
 .todoApp {
   max-width: 1440px;
@@ -72,7 +79,6 @@ body.light-mode {
     width: 440px;
     height: 620px;
     padding: 0;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     position: absolute;
     top: 50%;
@@ -119,10 +125,13 @@ h1 {
   border: 1px solid var(--Dark-Grayish-Blue);
   background-color: transparent;
   position: relative;
-  margin: 12px 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
 }
 
-.checkbox .checkButton > img {
+.checkButton > img {
   width: 10px;
   height: 10px;
   position: absolute;
@@ -132,12 +141,29 @@ h1 {
   display: none;
 }
 
+input[type="text"] {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  color: var(--Light-Grayish-Blue);
+  font-size: 1.2rem;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
 .taskInfo {
   margin: 1rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 1rem;
 }
 
 .taskCount {
-  font-weight: bold;
+  font-size: 0.9rem;
+  color: var(--Dark-Grayish-Blue);
 }
 
 .filters {
@@ -146,24 +172,40 @@ h1 {
   margin-bottom: 1rem;
 }
 
+.filters > button {
+  background: transparent;
+  border: none;
+  color: var(--Dark-Grayish-Blue);
+  cursor: pointer;
+}
+
+.filters > button:hover {
+  color: var(--Light-Grayish-Blue-hover);
+}
+
+.filters > button.active {
+  color: var(--Bright-Blue);
+}
+
 .clearCompleted {
   margin-bottom: 1rem;
   background: transparent;
   border: none;
-  color: blue;
+  color: var(--Dark-Grayish-Blue);
   cursor: pointer;
+}
+.clearCompleted:hover {
+  color: var(--Light-Grayish-Blue-hover);
 }
 
 .footer {
   font-size: 0.9rem;
   color: gray;
+  text-align: center;
 }
 
 .attribution {
   font-size: 11px;
   text-align: center;
-}
-
-.attribution a {
-  color: hsl(228, 45%, 44%);
+  z-index: 1;
 }

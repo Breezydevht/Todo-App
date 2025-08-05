@@ -1,21 +1,47 @@
 import React from "react";
-function TodoItem({ todo, onToggle }) {
+import styles from "./TodoItem.module.css";
 
-    return (
-            <li style={{
-                     textDecoration: todo.completed ? "line-through" : "none",
-                     display: 'flex',
-                     justifyContent: 'space-between',
-                     padding: '0.5rem 0', 
-                     }} >
-            {/* Muestra el texto del todo y aplica una clase si está completado */}
+function TodoItem({ todo, onToggle, onDelete }) {
+  return (
+    <div className={styles.todoItem}>
+      <div className={styles.checkbox}>
+        <button className={todo.completed ? styles.checkButtonChecked : styles.checkButton} onClick={onToggle}>
+          {todo.completed && (
+            <img
+              src="../../../src/assets/images/icon-check.svg"
+              alt="check icon"
+            />
+          )}
+        </button>
 
-            <span style={{cursor: 'pointer'}} onClick={onToggle}>
-                    {todo.text}
-            </span>
+      <li
+        style={{
+          textDecoration: todo.completed ? "line-through" : "none",
+          padding: "0.5rem 0",
+          cursor: "pointer",
+        }}
+        onClick={onToggle}
+      >
+        <span>{todo.text}</span>
+      </li>
+      </div>
+
+      <div className={styles.deleteButtonContainer}>
+        {todo.completed && (
+        <button className={styles.deleteButton} onClick={onDelete}>
+                <img
+                    src="../../../src/assets/images/icon-cross.svg"
+                    alt="delete icon"
+                />
+        </button>
                 
-            </li>
-    )
+                )}
+      </div>
+
+      
+      
+    </div>
+  );
 }
 
 export default TodoItem;

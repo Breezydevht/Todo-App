@@ -21,6 +21,8 @@ function TodoList({ todos, setTodos }) {
           key={todo.id}
           todo={todo}
           onToggle={() => handleToggle(todo.id)}
+          onDelete={() => setTodos(todos.filter((t) => t.id !== todo.id))} // Elimina el todo
+          // Filtra los todos para eliminar el que tiene el mismo id
         />
       ))}
     </ul>
