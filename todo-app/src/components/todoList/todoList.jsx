@@ -1,6 +1,6 @@
 import React from "react";
 import TodoItem from "../todoItem/todoItem";
-import styles from "./todoList.module.css";
+import styles from "./todolist.module.css";
 // Importa el componente TodoItem para mostrar cada todo
 
 import {
