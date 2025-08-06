@@ -49,14 +49,14 @@
 }
 
 :global(body.dark-mode) div.background {
-  background-image: url("../../../src/assets/images/bg-desktop-dark.jpg");
+  background-image: url("/images/bg-desktop-dark.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   transition: background-image 0.7s ease;
 }
 
 :global(body:not(.dark-mode)) div.background {
-  background-image: url("../../../src/assets/images/bg-desktop-light.jpg");
+  background-image: url("/images/bg-desktop-light.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }

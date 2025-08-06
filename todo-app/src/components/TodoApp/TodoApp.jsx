@@ -65,7 +65,7 @@ function TodoApp() {
 
                 <div className={styles.themeToggle}>
                     <button className={styles.toggleButton} onClick={toggleDarkMode}>
-                            <img src={ darkMode ? "../../../src/assets/images/icon-sun.svg" : "../../../src/assets/images/icon-moon.svg" } />
+                            <img src={ darkMode ? "/images/icon-moon.svg" : "/images/icon-sun.svg" } alt="toggle icon" />
                     </button>
                 </div>
              </header>
@@ -76,7 +76,7 @@ function TodoApp() {
         {/* handleSubmit es una función que se ejecuta cuando se envía el formulario */}
         <div className={styles.checkbox}>
             <button type="submit" className={styles.checkButton}>
-                <img src="../../../src/assets/images/icon-check.svg" alt="check icon" />
+                <img src="/images/icon-check.svg" alt="check icon" />
                 {/* Icono de check que se muestra en el botón */}
             </button>
         </div>

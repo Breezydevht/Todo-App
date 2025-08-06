@@ -27,7 +27,7 @@ function TodoItem({ todo, onToggle, onDelete }) {
         <button className={todo.completed ? styles.checkButtonChecked : styles.checkButton} onClick={onToggle}>
           {todo.completed && (
             <img
-              src="../../../src/assets/images/icon-check.svg"
+              src="/images/icon-check.svg"
               alt="check icon"
             />
           )}
@@ -44,7 +44,7 @@ function TodoItem({ todo, onToggle, onDelete }) {
         {todo.completed && (
         <button className={styles.deleteButton} onClick={onDelete}>
                 <img
-                    src="../../../src/assets/images/icon-cross.svg"
+                    src="/images/icon-cross.svg"
                     alt="delete icon"
                 />
         </button>
