@@ -15,10 +15,16 @@
 .checkButton:hover {
   border: 1px solid transparent;
   background-image: 
-    linear-gradient(var(--Very-Dark-Desaturated-Blue), var(--Very-Dark-Desaturated-Blue)),  /* centro Dark-blue */
+    linear-gradient(var(--Very-Light-Gray), var(--Very-Light-Gray)),  /* centro Dark-blue */
     linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%)); /* borde degradado */
   background-origin: border-box;
   background-clip: content-box, border-box;
+}
+
+:global(body.dark-mode) .checkButton:hover {
+  background-image: 
+    linear-gradient(var(--Very-Dark-Desaturated-Blue), var(--Very-Dark-Desaturated-Blue)),  /* centro Dark-blue */
+    linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%)); /* borde degradado */
 }
 
 .checkButtonChecked {
@@ -47,7 +53,11 @@
     justify-content: space-between;
     align-items: center;
     font-size: 1.2rem;
-    border-bottom: 1px solid var(--Very-Dark-Grayish-Blue-1);
+    border-bottom: 0.2px solid var(--Light-Grayish-Blue);
+}
+
+:global(body.dark-mode) .todoItem {
+  border-bottom: 0.2px solid var(--Dark-Grayish-Blue)
 }
 
 .deleteButtonContainer {
@@ -58,6 +68,4 @@
   cursor: pointer;
   background: transparent;
   border: none;
-  color: var(--Very-Dark-Grayish-Blue-1);
-  font-size: 1.5rem;
 }
