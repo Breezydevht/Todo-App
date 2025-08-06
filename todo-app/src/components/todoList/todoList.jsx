@@ -3,6 +3,21 @@ import TodoItem from "../todoItem/todoItem";
 import styles from "./TodoList.module.css";
 // Importa el componente TodoItem para mostrar cada todo
 
+import {
+  DndContext,
+  closestCenter,
+  useSensor,
+  useSensors,
+  PointerSensor
+} from "@dnd-kit/core";
+
+import {
+  arrayMove,
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+
+
 function TodoList({ todos, setTodos }) {
   // Componente para mostrar la lista de todos
   const handleToggle = (id) => {
@@ -14,7 +29,25 @@ function TodoList({ todos, setTodos }) {
     setTodos(updatedTodos);
   };
 
+  const sensors = useSensors(useSensor(PointerSensor));
+
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    if (active.id !== over.id) {
+        const oldIndex = todos.findIndex((todo) => todo.id === active.id);
+        const newIndex = todos.findIndex((todo) => todo.id === over.id);
+        setTodos((items) => arrayMove(items, oldIndex, newIndex));
+    }
+  };
+
   return (
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCenter}
+      onDragEnd={handleDragEnd}
+    >
+      <SortableContext items={todos} strategy={verticalListSortingStrategy}>
+        {/* Utiliza SortableContext para habilitar el arrastre de los todos */}
     <ul className={styles.todoList}>
       {todos.map((todo) => (
         <TodoItem
@@ -26,6 +59,8 @@ function TodoList({ todos, setTodos }) {
         />
       ))}
     </ul>
+      </SortableContext>
+    </DndContext>
   );
 }
 export default TodoList;

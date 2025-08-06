@@ -1,7 +1,26 @@
 import React from "react";
 import styles from "./TodoItem.module.css";
 
+import {
+  useSortable
+} from "@dnd-kit/sortable";
+
+import { CSS } from "@dnd-kit/utilities";
+
+
 function TodoItem({ todo, onToggle, onDelete }) {
+   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+    id: todo.id,
+  });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    cursor: "grab",
+    textDecoration: todo.completed ? "line-through" : "none",
+    padding: "0.5rem 0",
+  };
+
   return (
     <div className={styles.todoItem}>
       <div className={styles.checkbox}>
@@ -14,12 +33,7 @@ function TodoItem({ todo, onToggle, onDelete }) {
           )}
         </button>
 
-      <li
-        style={{
-          textDecoration: todo.completed ? "line-through" : "none",
-          padding: "0.5rem 0",
-          cursor: "pointer",
-        }}
+      <li  ref={setNodeRef} style={style} {...attributes} {...listeners}
         onClick={onToggle}
       >
         <span>{todo.text}</span>
