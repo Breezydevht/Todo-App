@@ -29,13 +29,9 @@
 
 }
 
-.TodoApp {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
 /* Modo oscuro aplicado globalmente al body */
 :global(body.dark-mode) {
-  background-color: #181824;
+  background-color: var(--Very-Dark-Blue);
   color: var(--Light-Grayish-Blue);
 }
 :global(body.dark-mode) .form {
@@ -56,6 +52,7 @@
   background-image: url("../../../src/assets/images/bg-desktop-dark.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  transition: background-image 0.7s ease;
 }
 
 :global(body:not(.dark-mode)) div.background {
@@ -70,6 +67,7 @@ body {
   font-family: var(--Font-Family);
   background-color: var( --Very-Light-Gray);
   color: var(--Very-Dark-Blue);
+  transition: background-color 0.7s ease, color 0.7s ease;
 }
 
 .todoApp {
